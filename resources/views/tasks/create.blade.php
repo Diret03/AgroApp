@@ -17,28 +17,12 @@
             <input type="date" class="form-control" id="end_date" name="end_date">
         </div>
         <div class="form-group">
-            <label for="status">Estado:</label>
-            <select class="form-control" id="status" name="status">
-                <option value="initiated">Iniciado</option>
-                <option value="in_progress">En Progreso</option>
-                <option value="cancelled">Cancelado</option>
-                <option value="completed">Completado</option>
-            </select>
+            <label for="progress_percentage">Progreso (%):</label>
+            <input type="number" class="form-control" id="progress_percentage" name="progress_percentage" min="0"
+                max="100">
         </div>
         <div class="form-group">
-            <label for="progress_percentage">Porcentaje de Avance:</label>
-            <input type="number" class="form-control" id="progress_percentage" name="progress_percentage">
-        </div>
-        <div class="form-group">
-            <label for="analyst_id">Analista Asignado:</label>
-            <select class="form-control" id="analyst_id" name="analyst_id">
-                @foreach ($analysts as $analyst)
-                    <option value="{{ $analyst->id }}">{{ $analyst->name }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="project_id">Proyecto Asociado:</label>
+            <label for="project_id">Proyecto:</label>
             <select class="form-control" id="project_id" name="project_id">
                 @foreach ($projects as $project)
                     <option value="{{ $project->id }}">{{ $project->name }}</option>

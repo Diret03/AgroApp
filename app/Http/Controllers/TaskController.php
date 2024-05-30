@@ -2,82 +2,61 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Task;
-use App\Models\Analyst;
-use App\Models\Project;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
     public function index()
     {
-
         $tasks = Task::all();
         return view('tasks.index', compact('tasks'));
     }
 
     public function create()
     {
-        $analysts = Analyst::all();
-
-        $projects = Project::all();
-
-        return view('tasks.create', compact('analysts', 'projects'));
+        return view('tasks.create');
     }
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            // Otras reglas de validación
-        ]);
-
-        $validatedData['start_date'] = $request->input('start_date');
-        $validatedData['end_date'] = $request->input('end_date');
-        $validatedData['status'] = $request->input('status');
-        $validatedData['progress_percentage'] = $request->input('progress_percentage');
-        $validatedData['analyst_id'] = $request->input('analyst_id');
-        $validatedData['project_id'] = $request->input('project_id');
-
-        Task::create($validatedData);
-
-        return redirect()->route('tasks.index')->with('success', '¡La tarea se ha creado correctamente!');
-    }
-
-
-    public function edit(Task $task)
-    {
-        $analysts = Analyst::all();
-
-        $projects = Project::all();
-        return view('tasks.edit', compact('task', 'analysts', 'projects'));
-    }
-
-    public function update(Request $request, Task $task)
-    {
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
+        $request->validate([
+            'name' => 'required',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
-            'status' => 'required|in:initiated,in_progress,cancelled,completed',
             'progress_percentage' => 'required|numeric',
-            'analyst_id' => 'required|exists:analysts,id',
-            'project_id' => 'required|exists:projects,id',
+            'project_id' => 'required|exists:projects,id'
         ]);
 
-        $validatedData['start_date'] = date('Y-m-d', strtotime($request->input('start_date')));
-        $validatedData['end_date'] = date('Y-m-d', strtotime($request->input('end_date')));
-
-        $task->update($validatedData);
-
-        return redirect()->route('tasks.index')->with('success', '¡La tarea se ha actualizado correctamente!');
+        Task::create($request->all());
+        return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
     }
 
-
-    public function destroy(Task $task)
+    public function edit($id)
     {
+        $task = Task::findOrFail($id);
+        return view('tasks.edit', compact('task'));
+    }
 
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+            'progress_percentage' => 'required|numeric',
+            'project_id' => 'required|exists:projects,id'
+        ]);
+
+        $task = Task::findOrFail($id);
+        $task->update($request->all());
+        return redirect()->route('tasks.index')->with('success', 'Task updated successfully.');
+    }
+
+    public function destroy($id)
+    {
+        $task = Task::findOrFail($id);
         $task->delete();
-        return redirect()->route('tasks.index')->with('success', '¡La tarea se ha eliminado correctamente!');
+        return redirect()->route('tasks.index')->with('success', 'Task deleted successfully.');
     }
 }

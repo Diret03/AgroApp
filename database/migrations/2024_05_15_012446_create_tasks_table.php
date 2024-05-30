@@ -17,12 +17,9 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->float('progress_percentage')->default(0);
-            $table->unsignedBigInteger('analyst_id');
             $table->unsignedBigInteger('project_id');
             $table->timestamps();
 
-            // foreign keys
-            $table->foreign('analyst_id')->references('id')->on('analysts')->onDelete('cascade');
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
         });
     }

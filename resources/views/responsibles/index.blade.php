@@ -7,18 +7,18 @@
             <!-- Encabezado -->
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                 <!-- Título de la página -->
-                <h1 class="h3 mb-0 text-gray-800">Analistas</h1>
-                <!-- Botón para agregar analista -->
-                <a href="{{ route('analysts.create') }}" class="btn btn-primary btn-icon-split ml-auto">
+                <h1 class="h3 mb-0 text-gray-800">Responsables</h1>
+                <!-- Botón para agregar responsable -->
+                <a href="{{ route('responsibles.create') }}" class="btn btn-primary btn-icon-split ml-auto">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
-                    <span class="text">Agregar Analista</span>
+                    <span class="text">Agregar Responsable</span>
                 </a>
             </nav>
             <!-- Contenido de la página -->
             <div class="container-fluid">
-                <!-- Tabla de analistas -->
+                <!-- Tabla de responsables -->
                 <div class="card shadow mb-4">
                     <div class="card-body">
                         <div class="table-responsive">
@@ -26,30 +26,32 @@
                                 <thead>
                                     <tr>
                                         <th>Nombre</th>
-                                        <th>Email</th>
+                                        <th>Apellido</th>
+                                        <th>Área</th>
                                         <th>Teléfono</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($analysts as $analyst)
+                                    @foreach ($responsibles as $responsible)
                                         <tr>
-                                            <td>{{ $analyst->name }}</td>
-                                            <td>{{ $analyst->email }}</td>
-                                            <td>{{ $analyst->phone_number }}</td>
+                                            <td>{{ $responsible->name }}</td>
+                                            <td>{{ $responsible->last_name }}</td>
+                                            <td>{{ $responsible->area }}</td>
+                                            <td>{{ $responsible->phone_number }}</td>
                                             <td>
-                                                <!-- Botón para editar analista -->
-                                                <a href="{{ route('analysts.edit', $analyst->id) }}"
+                                                <!-- Botón para editar responsable -->
+                                                <a href="{{ route('responsibles.edit', $responsible->id) }}"
                                                     class="btn btn-primary btn-circle btn-sm">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <!-- Formulario para eliminar analista -->
-                                                <form action="{{ route('analysts.destroy', $analyst->id) }}" method="POST"
-                                                    style="display: inline;">
+                                                <!-- Formulario para eliminar responsable -->
+                                                <form action="{{ route('responsibles.destroy', $responsible->id) }}"
+                                                    method="POST" style="display: inline;">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-circle btn-sm"
-                                                        onclick="return confirm('¿Estás seguro de que deseas eliminar este analista?')">
+                                                        onclick="return confirm('¿Estás seguro de que deseas eliminar este responsable?')">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </form>

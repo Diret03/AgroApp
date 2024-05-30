@@ -9,19 +9,15 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('interviews', function (Blueprint $table) {
+        Schema::create('responsibles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->date('date');
-            $table->text('description');
-            $table->boolean('status');
-            $table->unsignedBigInteger('client_id');
+            $table->string('last_name');
+            $table->string('area'); //a que area pertenece el docente
+            $table->string('phone_number')->nullable();
             $table->timestamps();
-
-            // foreign key
-            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
         });
     }
 
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('interviews');
+        Schema::dropIfExists('responsibles');
     }
 };

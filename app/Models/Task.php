@@ -13,9 +13,7 @@ class Task extends Model
         'name',
         'start_date',
         'end_date',
-        'status',
         'progress_percentage',
-        'analyst_id',
         'project_id',
     ];
 
@@ -39,11 +37,6 @@ class Task extends Model
     /**
      * Obtiene el cliente asociado al proyecto.
      */
-    public function analyst()
-    {
-        return $this->belongsTo(Analyst::class);
-    }
-
     public function project()
     {
         return $this->belongsTo(Project::class);

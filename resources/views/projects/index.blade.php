@@ -8,7 +8,7 @@
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                 <!-- Título de la página -->
                 <h1 class="h3 mb-0 text-gray-800">Proyectos</h1>
-                <!-- Botón para agregar -->
+                <!-- Botón para agregar proyecto -->
                 <a href="{{ route('projects.create') }}" class="btn btn-primary btn-icon-split ml-auto">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
@@ -18,7 +18,7 @@
             </nav>
             <!-- Contenido de la página -->
             <div class="container-fluid">
-                <!-- Tabla -->
+                <!-- Tabla de proyectos -->
                 <div class="card shadow mb-4">
                     <div class="card-body">
                         <div class="table-responsive">
@@ -26,12 +26,12 @@
                                 <thead>
                                     <tr>
                                         <th>Nombre</th>
-                                        <th>Cliente</th>
-                                        <th>Entrevista(Contrato)</th>
+                                        <th>Descripción</th>
                                         <th>Fecha de Inicio</th>
                                         <th>Fecha de Fin</th>
                                         <th>Estado</th>
-                                        <th>Porcentaje de Avance</th>
+                                        <th>Progreso (%)</th>
+                                        <th>Responsable</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -39,19 +39,20 @@
                                     @foreach ($projects as $project)
                                         <tr>
                                             <td>{{ $project->name }}</td>
-                                            <td>{{ $project->client->name }}</td>
-                                            <td>{{ $project->interview->name }}</td>
-                                            <td>{{ $project->start_date->format('Y-m-d') }}</td>
-                                            <td>{{ $project->end_date->format('Y-m-d') }}</td>
+                                            <td>{{ $project->description }}</td>
+                                            <td>{{ $project->start_date }}</td>
+                                            <td>{{ $project->end_date }}</td>
                                             <td>{{ $project->status }}</td>
                                             <td>{{ $project->progress_percentage }}</td>
+                                            <td>{{ $project->responsible->name }} {{ $project->responsible->last_name }}
+                                            </td>
                                             <td>
-                                                <!-- Botón para editar -->
+                                                <!-- Botón para editar proyecto -->
                                                 <a href="{{ route('projects.edit', $project->id) }}"
                                                     class="btn btn-primary btn-circle btn-sm">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <!-- Formulario para eliminar -->
+                                                <!-- Formulario para eliminar proyecto -->
                                                 <form action="{{ route('projects.destroy', $project->id) }}" method="POST"
                                                     style="display: inline;">
                                                     @csrf

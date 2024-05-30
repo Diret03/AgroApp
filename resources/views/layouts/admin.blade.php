@@ -68,51 +68,42 @@
                 {{ __('Info') }}
             </div>
 
-            <!-- Nav Item - Entrevitas-->
-            <li class="nav-item {{ Nav::isRoute('interviews') }}">
-                <a class="nav-link" href="{{ route('interviews.index') }}">
-                    <i class="fas fa-fw fa-folder-open"></i>
-                    <span>{{ __('Entrevistas') }}</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Clientes-->
-            <li class="nav-item {{ Nav::isRoute('clients') }}">
-                <a class="nav-link" href="{{ route('clients.index') }}">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>{{ __('Clientes') }}</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Proyectos-->
+            <!-- Nav Item - Projects -->
             <li class="nav-item {{ Nav::isRoute('projects') }}">
                 <a class="nav-link" href="{{ route('projects.index') }}">
-                    <i class="fas fa-fw fa-percent"></i>
+                    <i class="fas fa-fw fa-folder-open"></i>
                     <span>{{ __('Proyectos') }}</span>
                 </a>
             </li>
 
-
-            <!-- Nav Item - Analistas-->
-            <li class="nav-item {{ Nav::isRoute('analysts') }}">
-                <a class="nav-link" href="{{ route('analysts.index') }}">
-                    <i class="bi bi-file-earmark-person"></i>
-                    <span>{{ __('Analistas') }}</span>
+            <!-- Nav Item - Students -->
+            <li class="nav-item {{ Nav::isRoute('students') }}">
+                <a class="nav-link" href="{{ route('students.index') }}">
+                    <i class="fas fa-fw fa-user-graduate"></i>
+                    <span>{{ __('Estudiantes') }}</span>
                 </a>
             </li>
 
-            <!-- Nav Item - Tareas-->
+            <!-- Nav Item - Responsibles -->
+            <li class="nav-item {{ Nav::isRoute('responsibles') }}">
+                <a class="nav-link" href="{{ route('responsibles.index') }}">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>{{ __('Responsables') }}</span>
+                </a>
+            </li>
+
+            <!-- Nav Item - Tasks -->
             <li class="nav-item {{ Nav::isRoute('tasks') }}">
                 <a class="nav-link" href="{{ route('tasks.index') }}">
-                    <i class="bi bi-list-task"></i>
+                    <i class="fas fa-fw fa-tasks"></i>
                     <span>{{ __('Tareas') }}</span>
                 </a>
             </li>
 
-            <!-- Nav Item - Usuarios-->
+            <!-- Nav Item - Users -->
             <li class="nav-item {{ Nav::isRoute('users') }}">
                 <a class="nav-link" href="{{ route('users.index') }}">
-                    <i class="fas fa-fw fa fa-user-circle"></i>
+                    <i class="fas fa-fw fa-user-circle"></i>
                     <span>{{ __('Usuarios') }}</span>
                 </a>
             </li>

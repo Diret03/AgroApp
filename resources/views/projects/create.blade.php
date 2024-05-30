@@ -9,6 +9,10 @@
             <input type="text" class="form-control" id="name" name="name">
         </div>
         <div class="form-group">
+            <label for="description">Descripción:</label>
+            <textarea class="form-control" id="description" name="description"></textarea>
+        </div>
+        <div class="form-group">
             <label for="start_date">Fecha de Inicio:</label>
             <input type="date" class="form-control" id="start_date" name="start_date">
         </div>
@@ -26,31 +30,15 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="progress_percentage">Porcentaje de Avance:</label>
-            <input type="number" class="form-control" id="progress_percentage" name="progress_percentage">
-        </div>
-        {{-- <div class="form-group">
-            <label for="client_id">Entrevista aceptada:</label>
-            <select class="form-control" id="interview_id" name="interview_id">
-                @foreach ($interviews as $interview)
-                    <option value="{{ $interview->id }}">{{ $interview->name }}</option>
-                @endforeach
-            </select>
-        </div> --}}
-        <div class="form-group">
-            <label for="interview_id">Entrevista aceptada:</label>
-            <select class="form-control" id="interview_id" name="interview_id">
-                <option value="">Seleccione una entrevista aceptada</option>
-                @foreach ($interviews as $interview)
-                    <option value="{{ $interview->id }}">{{ $interview->name }}</option>
-                @endforeach
-            </select>
+            <label for="progress_percentage">Progreso (%):</label>
+            <input type="number" class="form-control" id="progress_percentage" name="progress_percentage" min="0"
+                max="100">
         </div>
         <div class="form-group">
-            <label for="client_id">Cliente:</label>
-            <select class="form-control" id="client_id" name="client_id">
-                @foreach ($clients as $client)
-                    <option value="{{ $client->id }}">{{ $client->name }}</option>
+            <label for="responsible_id">Responsable:</label>
+            <select class="form-control" id="responsible_id" name="responsible_id">
+                @foreach ($responsibles as $responsible)
+                    <option value="{{ $responsible->id }}">{{ $responsible->name }} {{ $responsible->last_name }}</option>
                 @endforeach
             </select>
         </div>

@@ -11,13 +11,14 @@ class Project extends Model
 
     protected $fillable = [
         'name',
+        'description',
         'start_date',
         'end_date',
         'status',
         'progress_percentage',
-        'client_id',
-        'interview_id',
+        'responsible_id',
     ];
+
 
     protected $casts = [
         'start_date' => 'date',
@@ -39,13 +40,13 @@ class Project extends Model
     /**
      * Obtiene el cliente asociado al proyecto.
      */
-    public function client()
+    public function responsible()
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Responsible::class);
     }
 
-    public function interview()
+    public function tasks()
     {
-        return $this->belongsTo(Interview::class);
+        return $this->hasMany(Task::class);
     }
 }

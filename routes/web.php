@@ -3,10 +3,9 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\ClientController;
-use App\Http\Controllers\InterviewController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\AnalystController;
+use App\Http\Controllers\ResponsibleController;
 use App\Http\Controllers\TaskController;
 /*
 |--------------------------------------------------------------------------
@@ -30,27 +29,25 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::put('/profile', 'ProfileController@update')->name('profile.update');
 
-Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
-Route::get('/projects/create', [ProjectController::class, 'create'])->name('projects.create');
-Route::post('/projects', [ProjectController::class, 'store'])->name('projects.store');
-Route::get('/projects/{project}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
-Route::put('/projects/{project}', [ProjectController::class, 'update'])->name('projects.update');
-Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
+Route::prefix('projects')->name('projects.')->group(function () {
+    Route::get('/', [ProjectController::class, 'index'])->name('index');
+    Route::get('/create', [ProjectController::class, 'create'])->name('create');
+    Route::post('/', [ProjectController::class, 'store'])->name('store');
+    Route::get('/{project}/edit', [ProjectController::class, 'edit'])->name('edit');
+    Route::put('/{project}', [ProjectController::class, 'update'])->name('update');
+    Route::delete('/{project}', [ProjectController::class, 'destroy'])->name('destroy');
+});
 
 
-Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
-Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create');
-Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');
-Route::get('/clients/{client}/edit', [ClientController::class, 'edit'])->name('clients.edit');
-Route::put('/clients/{client}', [ClientController::class, 'update'])->name('clients.update');
-Route::delete('/clients/{client}', [ClientController::class, 'destroy'])->name('clients.destroy');
+Route::prefix('students')->name('students.')->group(function () {
+    Route::get('/', [StudentController::class, 'index'])->name('index');
+    Route::get('/create', [StudentController::class, 'create'])->name('create');
+    Route::post('/', [StudentController::class, 'store'])->name('store');
+    Route::get('/{student}/edit', [StudentController::class, 'edit'])->name('edit');
+    Route::put('/{student}', [StudentController::class, 'update'])->name('update');
+    Route::delete('/{student}', [StudentController::class, 'destroy'])->name('destroy');
+});
 
-Route::get('/interviews', [InterviewController::class, 'index'])->name('interviews.index');
-Route::get('/interviews/create', [InterviewController::class, 'create'])->name('interviews.create');
-Route::post('/interviews', [InterviewController::class, 'store'])->name('interviews.store');
-Route::get('/interviews/{interview}/edit', [InterviewController::class, 'edit'])->name('interviews.edit');
-Route::put('/interviews/{interview}', [InterviewController::class, 'update'])->name('interviews.update');
-Route::delete('/interviews/{interview}', [InterviewController::class, 'destroy'])->name('interviews.destroy');
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
@@ -60,20 +57,26 @@ Route::put('/users/{user}', [UserController::class, 'update'])->name('users.upda
 Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
 
-Route::get('/analysts', [AnalystController::class, 'index'])->name('analysts.index');
-Route::get('/analysts/create', [AnalystController::class, 'create'])->name('analysts.create');
-Route::post('/analysts', [AnalystController::class, 'store'])->name('analysts.store');
-Route::get('/analysts/{analyst}/edit', [AnalystController::class, 'edit'])->name('analysts.edit');
-Route::put('/analysts/{analyst}', [AnalystController::class, 'update'])->name('analysts.update');
-Route::delete('/analysts/{analyst}', [AnalystController::class, 'destroy'])->name('analysts.destroy');
+
+Route::prefix('responsibles')->name('responsibles.')->group(function () {
+    Route::get('/', [ResponsibleController::class, 'index'])->name('index');
+    Route::get('/create', [ResponsibleController::class, 'create'])->name('create');
+    Route::post('/', [ResponsibleController::class, 'store'])->name('store');
+    Route::get('/{responsible}/edit', [ResponsibleController::class, 'edit'])->name('edit');
+    Route::put('/{responsible}', [ResponsibleController::class, 'update'])->name('update');
+    Route::delete('/{responsible}', [ResponsibleController::class, 'destroy'])->name('destroy');
+});
 
 
-Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
-Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
-Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
-Route::get('/tasks/{task}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
-Route::put('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
-Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+Route::prefix('tasks')->name('tasks.')->group(function () {
+    Route::get('/', [TaskController::class, 'index'])->name('index');
+    Route::get('/create', [TaskController::class, 'create'])->name('create');
+    Route::post('/', [TaskController::class, 'store'])->name('store');
+    Route::get('/{task}/edit', [TaskController::class, 'edit'])->name('edit');
+    Route::put('/{task}', [TaskController::class, 'update'])->name('update');
+    Route::delete('/{task}', [TaskController::class, 'destroy'])->name('destroy');
+});
+
 
 
 Route::get('/about', function () {
