@@ -3,19 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Responsible;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
     public function index()
     {
+        $responsibles = Responsible::all();
         $projects = Project::all();
-        return view('projects.index', compact('projects'));
+        return view('projects.index', compact('projects', 'responsibles'));
     }
 
     public function create()
     {
-        return view('projects.create');
+        $responsibles = Responsible::all();
+        return view('projects.create', compact('responsibles'));
     }
 
     public function store(Request $request)
@@ -37,7 +40,8 @@ class ProjectController extends Controller
     public function edit($id)
     {
         $project = Project::findOrFail($id);
-        return view('projects.edit', compact('project'));
+        $responsibles = Responsible::all();
+        return view('projects.edit', compact('project', 'responsibles'));
     }
 
     public function update(Request $request, $id)

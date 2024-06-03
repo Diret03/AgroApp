@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -10,12 +11,14 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::all();
-        return view('tasks.index', compact('tasks'));
+        $projects = Project::all();
+        return view('tasks.index', compact('tasks', 'projects'));
     }
 
     public function create()
     {
-        return view('tasks.create');
+        $projects = Project::all();
+        return view('tasks.create', compact('projects'));
     }
 
     public function store(Request $request)
@@ -35,7 +38,8 @@ class TaskController extends Controller
     public function edit($id)
     {
         $task = Task::findOrFail($id);
-        return view('tasks.edit', compact('task'));
+        $projects = Project::all();
+        return view('tasks.edit', compact('task', 'projects'));
     }
 
     public function update(Request $request, $id)

@@ -45,7 +45,7 @@
                 <div class="sidebar-brand-icon">
                     <i class="fa-solid fa-chart-line"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Nexus</div>
+                <div class="sidebar-brand-text mx-3">AgroApp</div>
             </a>
 
             <!-- Divider -->
