@@ -201,21 +201,27 @@
             <!-- Illustrations -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Imagenes</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Mision</h6>
                 </div>
                 <div class="card-body">
                     <div class="text-center">
                         <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                            src="{{ asset('img/svg/undraw_editable_dywm.svg') }}" alt="">
+                            src="{{ asset('img/sarance.jpg') }}" alt="">
                     </div>
-                    <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow"
-                            href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images
-                        that you can use completely free and without attribution!</p>
-                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw →</a>
-                </div>
+                    <p>La Unidad Educativa “SARANCE” es una Institución Fiscal de excelencia, de carácter técnico y humanístico, orientada a formar estudiantes con espíritu crítico y emprendedor, aplicando procesos psicopedagógicos actualizados, concordantes con la ciencia y tecnología de vanguardia, como herramienta para la solución de problemas sociales y ambientales en un mundo globalizado. </p>
+                    </div>
             </div>
 
+
+            <style>
+                p{
+                    text-align: justify;
+                }
+            </style>
+
+
             <!-- Approach -->
+        <!--
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
@@ -228,6 +234,7 @@
                         framework, especially the utility classes.</p>
                 </div>
             </div>
+        -->
 
         </div>
     </div>
